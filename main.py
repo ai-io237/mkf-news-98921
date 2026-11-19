@@ -154,48 +154,62 @@ for i, ln in enumerate(lines):
     text(ln, 38, y0 + 48 + i * 18, 2, INK)
 text('THE BIGGEST ENTERTAINMENT LAUNCH IN HISTORY', 38, y0 + 126, 2, TEAL)
 
-# story boxes
+# story boxes (double rule dividers between rows)
+def rule(y, color=INK):
+    rect(24, y, W - 48, 2, color)
+    rect(24, y + 3, W - 48, 1, FAINT)
+
 def box(x, y, w, h, accent, tag, head, body, big=3):
     rect(x, y, w, h, (250, 246, 236))
     rect(x, y, w, 4, accent)
+    rect(x, y + 4, 3, h - 7, accent)          # left accent edge
     rect(x, y + h - 3, w, 3, FAINT)
     text(tag, x + 14, y + 12, 2, accent)
-    text(head, x + 14, y + 34, big, INK)
+    rect(x + 14, y + 30, textw(tag, 2) - 2, 2, accent)
+    text(head, x + 14, y + 38, big, INK)
     for i, ln in enumerate(body):
-        text(ln, x + 14, y + 34 + big * 7 + 8 + i * 16, 2, MUTED)
+        text(ln, x + 14, y + 38 + big * 7 + 10 + i * 16, 2, MUTED)
 
 bw, gap = 466, 20
 x1, x2 = 24, 24 + bw + gap
 yb = 292
 
-box(x1, yb, bw, 188, TEAL, 'MARKETS',
+box(x1, yb, bw, 186, TEAL, 'MARKETS',
     'STOCKS MIXED AS FED EYES RATE PATH',
     ['GLOBAL SHARES SWING AS INVESTORS WEIGH',
      'WHEN CENTRAL BANKS WILL CUT RATES.',
      'TECH LEADS GAINS IN TOKYO AND LONDON',
-     'WHILE OIL PRICES SLIP TOWARD $72.'])
+     'WHILE OIL PRICES SLIP TOWARD $72 A BARREL.'])
 
-box(x2, yb, bw, 188, OCHRE, 'CLIMATE',
+box(x2, yb, bw, 186, OCHRE, 'CLIMATE',
     'CLIMATE SUMMIT DEAL ON ADAPTATION',
     ['DELEGATES AT THE COP31 TALKS BACK A NEW',
      'FUND TO HELP VULNERABLE NATIONS ADAPT.',
      'EMISSIONS PLEDGE TO PEAK BEFORE 2030;',
-     'DEAL HAILED AS A BREAKTHROUGH BY UN.'])
+     'DEAL HAILED AS A BREAKTHROUGH BY THE UN.'])
 
-y2 = yb + 208
-box(x1, y2, bw, 188, VIOLET, 'TECH & AI',
+rule(yb + 196)
+
+y2 = yb + 212
+box(x1, y2, bw, 186, VIOLET, 'TECH & AI',
     'AI MODELS REACH NEW CODING PEAK',
     ['A NEW FRONTIER MODEL SOLVES HARD',
      'SOFTWARE TASKS, SPARKING BOTH HYPE',
      'AND DEBATE OVER SAFETY, JOBS AND THE',
      'COST OF THE AI BUILD OUT WORLDWIDE.'])
 
-box(x2, y2, bw, 188, DKTEAL, 'SPORT',
-    'FINAL SET: RIVALRY REACHES SHOWDOWN',
-    ['TOP SEEDS STORM INTO THE ATP FINALS',
-     'TITLE MATCH AFTER A THRILLING TIE.',
-     'NATIONS ALSO NAME SQUADS FOR THE',
-     'WORLD CUP DRAW AHEAD OF NEXT SUMMER.'])
+box(x2, y2, bw, 186, CRIMSON, 'SPORT',
+    'ATP FINALS: TITLE SHOWDOWN SET',
+    ['TOP SEEDS STORM INTO THE TITLE MATCH',
+     'AFTER A THRILLING THIRD-SET TIE.',
+     'NATIONS ALSO NAME SQUADS AHEAD OF THE',
+     'WORLD CUP DRAW FOR NEXT SUMMER.'])
+
+rule(694)
+
+# index strip
+text('INSIDE:', 24, 706, 2, CRIMSON)
+text('WEATHER  /  OPINION  /  MARKETS DATA  /  TECH  /  SPORT', 94, 706, 2, MUTED)
 
 # footer strip
 fy = H - 40
